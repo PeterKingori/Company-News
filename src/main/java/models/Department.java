@@ -3,13 +3,13 @@ package models;
 public class Department {
     private String name;
     private String description;
-    private int totalEmployees;
+    private int totalemployees;
     private int id;
 
     public Department(String name, String description, int totalEmployees) {
         this.name = name;
         this.description = description;
-        this.totalEmployees = totalEmployees;
+        this.totalemployees = totalEmployees;
     }
 
     @Override
@@ -19,7 +19,7 @@ public class Department {
 
         Department that = (Department) o;
 
-        if (totalEmployees != that.totalEmployees) return false;
+        if (totalemployees != that.totalemployees) return false;
         if (id != that.id) return false;
         if (!name.equals(that.name)) return false;
         return description.equals(that.description);
@@ -29,7 +29,7 @@ public class Department {
     public int hashCode() {
         int result = name.hashCode();
         result = 31 * result + description.hashCode();
-        result = 31 * result + totalEmployees;
+        result = 31 * result + totalemployees;
         result = 31 * result + id;
         return result;
     }
@@ -51,10 +51,10 @@ public class Department {
     }
 
     public int getTotalEmployees() {
-        return totalEmployees;
+        return totalemployees;
     }
 
     public void setTotalEmployees(int totalEmployees) {
-        this.totalEmployees = totalEmployees;
+        this.totalemployees = totalEmployees;
     }
 }
