@@ -15,4 +15,5 @@ public interface DepartmentDao {
     //update
 
     //delete
+    void clearAllDepartments();
 }

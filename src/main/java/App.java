@@ -23,9 +23,10 @@ public class App {
         Connection conn;
         Gson gson = new Gson();
 
-        String connectionString = "jdbc:h2:~/company_news.db;INIT=RUNSCRIPT from " +
-                "'classpath:db/create.sql'";
-        Sql2o sql2o = new Sql2o(connectionString, "", "");
+        //String connectionString = "jdbc:h2:~/company_news.db;INIT=RUNSCRIPT from " +
+          //      "'classpath:db/create.sql'";
+        String connectionString = "jdbc:postgresql://localhost:5432/company_news";
+        Sql2o sql2o = new Sql2o(connectionString, null, null);
 
         departmentDao = new Sql2oDepartmentDao(sql2o);
         userDao = new Sql2oUserDao(sql2o);
@@ -91,6 +92,11 @@ public class App {
         //get all news from a specific department
         get("/departments/:departmentId/news", "application/json", (request, response) -> {
             int departmentId = Integer.parseInt(request.params("departmentId"));
+            Department departmentToFind = departmentDao.findById(departmentId);
+            if (departmentToFind == null) {
+                throw new ApiException(404, String.format("No department with the id: \"%s\" " +
+                        "exists", request.params("id")));
+            }
             return gson.toJson(newsDao.getAllNewsByDepartment(departmentId));
         });
 

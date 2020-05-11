@@ -64,4 +64,15 @@ public class Sql2oNewsDao implements NewsDao {
         }
     }
 
+    @Override
+    public void clearAllNews() {
+        String sql = "DELETE FROM news";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql)
+                    .executeUpdate();
+        } catch (Sql2oException ex){
+            System.out.println(ex);
+        }
+    }
+
 }
