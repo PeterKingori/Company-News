@@ -29,6 +29,7 @@ public class NewsTest {
         assertEquals("There will be company lunch offered for free.", testNews.getContent());
         assertEquals("General", testNews.getType());
         assertEquals("Mark", testNews.getAuthor());
+        assertEquals(1, testNews.getDepartmentId());
     }
 
     @Test
@@ -65,6 +66,6 @@ public class NewsTest {
     //helper method
     private News setupNews() {
         return new News("Company lunch", "There will be company lunch offered for free.",
-                "General", "Mark");
+                "General", "Mark", 1);
     }
 }

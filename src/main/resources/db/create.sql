@@ -13,7 +13,8 @@ id int PRIMARY KEY auto_increment,
 title VARCHAR,
 content VARCHAR,
 type VARCHAR,
-author VARCHAR
+author VARCHAR,
+departmentId int
 );
 
 CREATE TABLE IF NOT EXISTS departments (
