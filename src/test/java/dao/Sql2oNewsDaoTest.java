@@ -47,7 +47,7 @@ public class Sql2oNewsDaoTest {
         Department firstDepartment = setupDepartment();
         Department secondDepartment = setupDepartment();
         News firstNews = setupNewsForDepartment(firstDepartment);
-        News secondNews = setupNewsForDepartment(secondDepartment);
+        News secondNews = setupNewsForDepartment(firstDepartment);
         News otherNews = setupNewsForDepartment(secondDepartment);
         assertEquals(2, newsDao.getAllNewsByDepartment(firstDepartment.getId()).size());
     }
@@ -82,6 +82,6 @@ public class Sql2oNewsDaoTest {
         departmentDao.add(department);
         return department;
     }
-}
+
 
 }
