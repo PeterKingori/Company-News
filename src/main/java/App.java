@@ -61,6 +61,12 @@ public class App {
             return gson.toJson(userDao.getAllUsers());
         });
 
+        //get a specific user and show his/her details
+        get("/users/:id", "application/json", (request, response) -> {
+            int userId = Integer.parseInt(request.params("id"));
+            return gson.toJson(userDao.findById(userId));
+        });
+
         get("/news", "application/json", (request, response) -> {
             return gson.toJson(newsDao.getAllNews());
         });
