@@ -74,7 +74,14 @@ public class App {
         //get all users from a specific department
         get("/departments/:departmentId/users", "application/json", (request, response) -> {
             int departmentId = Integer.parseInt(request.params("departmentId"));
-            return gson.toJson(userDao.getAllUsersByDepartment(departmentId));
+            Department departmentToFind = departmentDao.findById(departmentId);
+            if (departmentId <= 0 || departmentToFind == null) {
+                return "{\"I'm sorry but that department does not exist in the company database" +
+                        ".\"}";
+            }
+            else {
+                return gson.toJson(userDao.getAllUsersByDepartment(departmentId));
+            }
         });
 
         //get all news from a specific department
