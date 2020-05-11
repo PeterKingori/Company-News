@@ -32,55 +32,62 @@ public class App {
             Department department = gson.fromJson(request.body(), Department.class);
             departmentDao.add(department);
             response.status(201);
-            response.type("application/json");
             return gson.toJson(department);
         });
 
-        post("/news/new", "application/json", (request, response) -> {
+        post("/departments/:departmentId/news/new", "application/json", (request, response) -> {
+            int departmentId = Integer.parseInt(request.params("departmentId"));
             News news = gson.fromJson(request.body(), News.class);
+            news.setDepartmentId(departmentId);
             newsDao.add(news);
             response.status(201);
-            response.type("application/json");
             return gson.toJson(news);
         });
 
-        post("/users/new", "application/json", (request, response) -> {
+        post("/departments/:departmentId/users/new", "application/json", (request, response) -> {
+            int departmentId = Integer.parseInt(request.params("departmentId"));
             User user = gson.fromJson(request.body(), User.class);
+            user.setDepartmentId(departmentId);
             userDao.add(user);
             response.status(201);
-            response.type("application/json");
             return gson.toJson(user);
         });
 
         get("/departments", "application/json", (request, response) -> {
-            response.type("application/json");
             return gson.toJson(departmentDao.getAll());
         });
 
         get("/users", "application/json", (request, response) -> {
-            response.type("application/json");
             return gson.toJson(userDao.getAllUsers());
         });
 
         get("/news", "application/json", (request, response) -> {
-            response.type("application/json");
             return gson.toJson(newsDao.getAllNews());
         });
 
-        get("/users/:id", "application/json", (request, response) -> {
-            response.type("application/json");
-            int userId = Integer.parseInt(request.params("id"));
-            response.type("application/json");
-            return gson.toJson(userDao.findById(userId));
+        //get all users from a specific department
+        get("/departments/:departmentId/users", "application/json", (request, response) -> {
+            int departmentId = Integer.parseInt(request.params("departmentId"));
+            return gson.toJson(userDao.getAllUsersByDepartment(departmentId));
         });
 
+        //get all news from a specific department
+        get("/departments/:departmentId/news", "application/json", (request, response) -> {
+            int departmentId = Integer.parseInt(request.params("departmentId"));
+            return gson.toJson(newsDao.getAllNewsByDepartment(departmentId));
+        });
+
+        //get a specific department and show the details
         get("/departments/:id", "application/json", (request, response) -> {
-            response.type("application/json");
             int departmentId = Integer.parseInt(request.params("id"));
-            response.type("application/json");
             return gson.toJson(departmentDao.findById(departmentId));
         });
 
+
+        //Filters
+        after((request, response) -> {
+            response.type("application/json");
+        });
 
 
     }
