@@ -52,6 +52,36 @@ public class App {
             return gson.toJson(user);
         });
 
+        get("/departments", "application/json", (request, response) -> {
+            response.type("application/json");
+            return gson.toJson(departmentDao.getAll());
+        });
+
+        get("/users", "application/json", (request, response) -> {
+            response.type("application/json");
+            return gson.toJson(userDao.getAllUsers());
+        });
+
+        get("/news", "application/json", (request, response) -> {
+            response.type("application/json");
+            return gson.toJson(newsDao.getAllNews());
+        });
+
+        get("/users/:id", "application/json", (request, response) -> {
+            response.type("application/json");
+            int userId = Integer.parseInt(request.params("id"));
+            response.type("application/json");
+            return gson.toJson(userDao.findById(userId));
+        });
+
+        get("/departments/:id", "application/json", (request, response) -> {
+            response.type("application/json");
+            int departmentId = Integer.parseInt(request.params("id"));
+            response.type("application/json");
+            return gson.toJson(departmentDao.findById(departmentId));
+        });
+
+
 
     }
 }
