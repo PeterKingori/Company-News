@@ -5,7 +5,8 @@ id int PRIMARY KEY auto_increment,
 name VARCHAR,
 position VARCHAR,
 role VARCHAR,
-department VARCHAR
+department VARCHAR,
+departmentId int
 );
 
 CREATE TABLE IF NOT EXISTS news (

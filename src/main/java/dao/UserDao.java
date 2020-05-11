@@ -12,7 +12,7 @@ public interface UserDao {
     //read
     List<User> getAllUsers();
     User findById(int id);
-    List<User> getAllUsersByDepartment(String department);
+    List<User> getAllUsersByDepartment(int departmentId);
 
     //update
 

@@ -28,6 +28,7 @@ public class UserTest {
         assertEquals("Finance Assistant", testUser.getPosition());
         assertEquals("Financial Analysis", testUser.getRole());
         assertEquals("Finance", testUser.getDepartment());
+        assertEquals(1,testUser.getDepartmentId());
     }
 
     @Test
@@ -59,10 +60,17 @@ public class UserTest {
         assertNotEquals("Finance", testUser.getDepartment());
     }
 
+    @Test
+    public void setDepartmentId() {
+        User testUser = setupUser();
+        testUser.setDepartmentId(2);
+        assertNotEquals(1, testUser.getDepartmentId());
+    }
+
 
 
     //helper method
     private User setupUser() {
-        return new User("Joan", "Finance Assistant", "Financial Analysis", "Finance");
+        return new User("Joan", "Finance Assistant", "Financial Analysis", "Finance", 1);
     }
 }

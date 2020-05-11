@@ -50,11 +50,19 @@ public class Department {
         this.description = description;
     }
 
-    public int getTotalEmployees() {
+    public int getTotalemployees() {
         return totalemployees;
     }
 
-    public void setTotalEmployees(int totalEmployees) {
-        this.totalemployees = totalEmployees;
+    public void setTotalemployees(int totalemployees) {
+        this.totalemployees = totalemployees;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
