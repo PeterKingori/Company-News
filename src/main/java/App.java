@@ -2,11 +2,15 @@ import com.google.gson.Gson;
 import dao.Sql2oDepartmentDao;
 import dao.Sql2oNewsDao;
 import dao.Sql2oUserDao;
+import exceptions.ApiException;
 import models.Department;
 import models.News;
 import models.User;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static spark.Spark.*;
 
@@ -93,9 +97,23 @@ public class App {
         //get a specific department and show the details
         get("/departments/:id", "application/json", (request, response) -> {
             int departmentId = Integer.parseInt(request.params("id"));
+            Department departmentToFind = departmentDao.findById(departmentId);
+            if (departmentToFind == null) {
+                throw new ApiException(404, String.format("No department with the id: \"%s\" " +
+                        "exists", request.params("id")));
+            }
             return gson.toJson(departmentDao.findById(departmentId));
         });
 
+        exception(ApiException.class, (exception, request, response) -> {
+            ApiException err = (ApiException) exception;
+            Map<String, Object> jsonMap = new HashMap<>();
+            jsonMap.put("status", err.getStatusCode());
+            jsonMap.put("errorMessage", err.getMessage());
+            response.type("application/json");
+            response.status(err.getStatusCode());
+            response.body(gson.toJson(jsonMap));
+        });
 
         //Filters
         after((request, response) -> {
