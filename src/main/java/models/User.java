@@ -6,12 +6,14 @@ public class User {
     private String role;
     private String department;
     private int id;
+    private int departmentId;
 
-    public User(String name, String position, String role, String department) {
+    public User(String name, String position, String role, String department, int departmentId) {
         this.name = name;
         this.position = position;
         this.role = role;
         this.department = department;
+        this.departmentId = departmentId;
     }
 
     @Override
@@ -22,6 +24,7 @@ public class User {
         User user = (User) o;
 
         if (id != user.id) return false;
+        if (departmentId != user.departmentId) return false;
         if (!name.equals(user.name)) return false;
         if (!position.equals(user.position)) return false;
         if (!role.equals(user.role)) return false;
@@ -35,6 +38,7 @@ public class User {
         result = 31 * result + role.hashCode();
         result = 31 * result + department.hashCode();
         result = 31 * result + id;
+        result = 31 * result + departmentId;
         return result;
     }
 
@@ -76,5 +80,13 @@ public class User {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(int departmentId) {
+        this.departmentId = departmentId;
     }
 }

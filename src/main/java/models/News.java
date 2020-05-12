@@ -6,12 +6,14 @@ public class News {
     private String type;
     private String author;
     private int id;
+    private int departmentId;
 
-    public News(String title, String content, String type, String author) {
+    public News(String title, String content, String type, String author, int departmentId) {
         this.title = title;
         this.content = content;
         this.type = type;
         this.author = author;
+        this.departmentId = departmentId;
     }
 
     @Override
@@ -22,6 +24,7 @@ public class News {
         News news = (News) o;
 
         if (id != news.id) return false;
+        if (departmentId != news.departmentId) return false;
         if (!title.equals(news.title)) return false;
         if (!content.equals(news.content)) return false;
         if (!type.equals(news.type)) return false;
@@ -35,6 +38,7 @@ public class News {
         result = 31 * result + type.hashCode();
         result = 31 * result + author.hashCode();
         result = 31 * result + id;
+        result = 31 * result + departmentId;
         return result;
     }
 
@@ -68,6 +72,22 @@ public class News {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public int getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(int departmentId) {
+        this.departmentId = departmentId;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
 

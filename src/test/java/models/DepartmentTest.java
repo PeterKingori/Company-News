@@ -27,7 +27,7 @@ public class DepartmentTest {
         assertEquals("Finance", testDepartment.getName());
         assertEquals("We inform you on financial matters of the company",
                 testDepartment.getDescription());
-        assertEquals(5, testDepartment.getTotalEmployees());
+        assertEquals(5, testDepartment.getTotalemployees());
     }
 
     @Test
@@ -48,8 +48,8 @@ public class DepartmentTest {
     @Test
     public void setTotalEmployees() {
         Department testDepartment = setupDepartment();
-        testDepartment.setTotalEmployees(10);
-        assertNotEquals(5, testDepartment.getTotalEmployees());
+        testDepartment.setTotalemployees(10);
+        assertNotEquals(5, testDepartment.getTotalemployees());
     }
 
 
