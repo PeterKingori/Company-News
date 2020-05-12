@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-public class App {
-=======
 import com.google.gson.Gson;
 import dao.Sql2oDepartmentDao;
 import dao.Sql2oNewsDao;
@@ -131,5 +128,5 @@ public class App {
 
 
     }
->>>>>>> 3.Frontend_JSON/GSON_And_Postman
+
 }
